@@ -17,10 +17,12 @@ class ShopsController extends Controller
         return view('Shops/index');
     }
     //查看商铺详细信息
-    public function show(Shop $shop){
+    public function shows(){
         $categories = ShopCategory::all();
-        $user = User::where('shop_id','=',$shop->id)->first();
-        return view('Shops/show',compact('shop','user','categories'));
+        $shop_id = auth()->user()->shop_id;
+        $shop = Shop::where('id',$shop_id)->first();
+        $user = User::where('id',auth()->user()->id)->first();
+        return view('Shops/show',compact('shop','categories','user'));
     }
     //商家注册
     public function create()

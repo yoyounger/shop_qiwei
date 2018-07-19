@@ -20,7 +20,7 @@
             <tr>
                 <td>账户审核</td>
                 <td>
-                    @if($user->status2) <span class="glyphicon glyphicon-ok" style="color:green"></span> @else <span class="glyphicon glyphicon-remove" style="color:red"></span> @endif &emsp;
+                    @if($user->status) <span class="glyphicon glyphicon-ok" style="color:green"></span> @else <span class="glyphicon glyphicon-remove" style="color:red"></span> @endif &emsp;
                     ("✔"为启用,否则待审核)
                 </td>
             </tr>
@@ -39,7 +39,7 @@
             <tr>
                 <td>店铺图片</td>
                 <td>
-                    <img src="{{\Illuminate\Support\Facades\Storage::url($shop->shop_img)}}" alt="" width="50px">
+                    <img src="{{$shop->shop_img}}" alt="" width="50px">
                 </td>
             </tr>
             <tr>
@@ -116,7 +116,7 @@
             <tr>
                 <td>审核</td>
                 <td>
-                    @if($shop->status == 1) 正常 @elseif($shop->status == 0) 未审核 @else 禁用 @endif
+                    @if($shop->status == 1) 审核通过 @elseif($shop->status == 0) 审核中 @else 禁用 @endif
                 </td>
             </tr>
         </table>

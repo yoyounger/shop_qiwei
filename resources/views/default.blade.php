@@ -26,7 +26,7 @@
         <a href="#" class="list-group-item active">
             Cras justo odio
         </a>
-        <a href="" class="list-group-item">我的商铺信息</a>
+        <a href="{{route('shows')}}" class="list-group-item">我的商铺信息</a>
         <a href="#" class="list-group-item">Porta ac consectetur ac</a>
         <a href="#" class="list-group-item">Vestibulum at eros</a>
     </div>
