@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//商家
+Route::resource('shops','ShopsController');
+
+//账户
+Route::resource('users','UsersController');
