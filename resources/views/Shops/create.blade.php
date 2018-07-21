@@ -46,7 +46,9 @@
                     <select name="shop_category_id" id="" class="form-control" >
                         <option value="">请选择</option>
                         @foreach($categories as $category)
+                            @if($category->status)
                         <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endif
                             @endforeach
                     </select>
             </tr>
@@ -55,13 +57,6 @@
                 <td>
                     <input type="file" name="shop_img"><span style="color: red">(必填)</span>
                 </td>
-            </tr>
-            {{--<tr>--}}
-                {{--<td>评分</td>--}}
-                {{--<td>--}}
-                    {{--<input type="number" name="shop_rating" class="form-control" value="2">--}}
-                {{--</td>--}}
-            {{--</tr>--}}
             <tr>
                 <td>是否品牌</td>
                 <td>
@@ -128,18 +123,9 @@
                     <input type="text" name="discount" class="form-control" placeholder="可不填" value="{{old('discount')}}">
                 </td>
             </tr>
-            {{--<tr>--}}
-                {{--<td>店铺审核</td>--}}
-                {{--<td>--}}
-                    {{--<input type="radio" name="status" value="1" id="radio1" checked><label for="radio1">正常</label>--}}
-                    {{--<input type="radio" name="status" value="0" id="radio2"><label for="radio2">待审核</label>--}}
-                    {{--<input type="radio" name="status" value="-1" id="radio3"><label for="radio3">禁用</label>--}}
-                {{--</td>--}}
-            {{--</tr>--}}
-
             <tr>
                 <td></td>
-                <td><button type="submit" class="btn btn-success">注册</button></td>
+                <td><button type="submit" class="btn btn-success btn-lg">注册</button></td>
             </tr>
             {{csrf_field()}}
         </table>

@@ -30,6 +30,9 @@ class SessionsController extends Controller
         ]);
         $name = $request->name;
         $user = User::where('name',$name)->select('status','shop_id')->first();
+        if (!$user){
+            return back()->with('danger', '账号不存在!')->withInput();
+        }
         $shop_status = Shop::where('id',$user->shop_id)->select('status')->first();
         if (! $user->status || !$shop_status  ) {
             return back()->with('danger', '账户审核中!尚不能登录!')->withInput();

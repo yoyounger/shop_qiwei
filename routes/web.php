@@ -27,3 +27,12 @@ Route::delete('logout','SessionsController@destroy')->name('logout');
 //账户登录修改个人密码
 Route::get('reset','SessionsController@reset')->name('reset');
 Route::post('password','SessionsController@password')->name('password');
+//修改个人资料
+Route::get('setdata','ShopsController@setdata')->name('setdata');
+Route::post('mydata','ShopsController@mydata')->name('mydata');
+//菜品分类
+Route::resource('menucategories','MenuCategoriesController');
+//菜品分类默认
+Route::post('default','MenuCategoriesController@default')->name('default');
+//菜品
+Route::resource('menus','MenusController');

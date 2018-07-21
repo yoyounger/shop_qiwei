@@ -119,5 +119,11 @@
                     @if($shop->status == 1) 审核通过 @elseif($shop->status == 0) 审核中 @else 禁用 @endif
                 </td>
             </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="{{route('shops.edit',[$shop])}}" class="btn btn-warning">修改我的商铺信息</a>
+                </td>
+            </tr>
         </table>
 @stop

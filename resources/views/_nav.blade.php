@@ -52,8 +52,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">欢迎您 ! {{auth()->user()->name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><span class="glyphicon glyphicon-paperclip"></span>&emsp;个人中心</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-erase"></span>&emsp;修改资料</a></li>
+                        <li><a href="{{route('shows')}}"><span class="glyphicon glyphicon-paperclip"></span>&emsp;个人商铺中心</a></li>
+                        <li><a href="{{route('setdata')}}"><span class="glyphicon glyphicon-erase"></span>&emsp;修改资料</a></li>
                         <li><a href="{{route('reset')}}"><span class="glyphicon glyphicon-scissors"></span>&emsp;修改密码</a></li>
                         <li role="separator" class="divider"></li>
                         <li>

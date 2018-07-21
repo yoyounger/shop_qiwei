@@ -4,33 +4,33 @@
     @include('_errors')
     <br>
     <br>
-    <form action="{{route('shops.update',[$shop,$user])}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('shops.update',[$shop])}}" method="post" enctype="multipart/form-data">
         <table class="table table-bordered">
-            <tr>
-                <td colspan="2" style="text-align: center;font-size: 20px;font-weight: bold">账户相关</td>
-            </tr>
-            <tr>
-                <td>用户名</td>
-                <td>
-                    <input type="text" name="name" class="form-control" value="{{$user->name}}">
-                </td>
-            </tr>
-            <tr>
-                <td>邮箱</td>
-                <td>
-                    <input type="text" name="email" class="form-control" value="{{$user->email}}">
-                </td>
-            </tr>
-            <tr>
-                <td>账户审核</td>
-                <td>
-                    <input type="checkbox" value="1" name="status2" id="status2" @if($user->status2) checked @endif>&emsp;
-                    <label for="status2"><span style="color: red">("✔"为启用,否则禁用)</span></label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align: center;font-size: 20px;font-weight: bold">店铺信息</td>
-            </tr>
+            {{--<tr>--}}
+                {{--<td colspan="2" style="text-align: center;font-size: 20px;font-weight: bold">账户相关</td>--}}
+            {{--</tr>--}}
+            {{--<tr>--}}
+                {{--<td>用户名</td>--}}
+                {{--<td>--}}
+                    {{--<input type="text" name="name" class="form-control" value="{{$user->name}}">--}}
+                {{--</td>--}}
+            {{--</tr>--}}
+            {{--<tr>--}}
+                {{--<td>邮箱</td>--}}
+                {{--<td>--}}
+                    {{--<input type="text" name="email" class="form-control" value="{{$user->email}}">--}}
+                {{--</td>--}}
+            {{--</tr>--}}
+            {{--<tr>--}}
+                {{--<td>账户审核</td>--}}
+                {{--<td>--}}
+                    {{--<input type="checkbox" value="1" name="status2" id="status2" @if($user->status2) checked @endif>&emsp;--}}
+                    {{--<label for="status2"><span style="color: red">("✔"为启用,否则禁用)</span></label>--}}
+                {{--</td>--}}
+            {{--</tr>--}}
+            {{--<tr>--}}
+                {{--<td colspan="2" style="text-align: center;font-size: 20px;font-weight: bold">店铺信息</td>--}}
+            {{--</tr>--}}
             <tr>
                 <td>商家名称</td>
                 <td><input type="text" name="shop_name" class="form-control" value="{{$shop->shop_name}}"></td>
@@ -40,7 +40,9 @@
                 <td>
                     <select name="shop_category_id" id="" class="form-control" >
                         @foreach($categories as $category)
+                            @if($category->status)
                         <option value="{{$category->id}}" @if($category->id == $shop->shop_category_id) checked @endif>{{$category->name}}</option>
+                            @endif
                         @endforeach
                     </select>
             </tr>

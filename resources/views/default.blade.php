@@ -27,8 +27,8 @@
             Cras justo odio
         </a>
         <a href="{{route('shows')}}" class="list-group-item">我的商铺信息</a>
-        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-        <a href="#" class="list-group-item">Vestibulum at eros</a>
+        <a href="{{route('menucategories.index')}}" class="list-group-item">我的菜品分类</a>
+        <a href="{{route('menus.index')}}" class="list-group-item">我的菜品</a>
     </div>
     <div class="col-xs-1">
     </div>
