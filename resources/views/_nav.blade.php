@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" name="keywords" value="">
                 </div>
-                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+
             </form>
             <ul class="nav navbar-nav navbar-right">
 

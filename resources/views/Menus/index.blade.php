@@ -2,7 +2,31 @@
 @section('contents')
     <h2>本店菜品管理</h2>
     <a class="btn btn-primary" href="{{route('menus.create')}}" style="float: right;margin: 20px"><span class="glyphicon glyphicon-plus"></span>&emsp;添加菜品</a>
-
+    <div class="row">
+        <form action="{{route('menus.index')}}" method="get">
+            <div class="col-xs-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="菜名" name="goods_name">
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="最低价格" name="goods_pricemin">
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="最高价格" name="goods_pricemax">
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <span class="input-group-btn">
+                     <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+            {{csrf_field()}}
+        </form>
+    </div>
     <table class="table table-bordered" style="text-align: center">
         <tr>
             <th style="text-align: center">序号</th>
@@ -15,10 +39,9 @@
             <th style="text-align: center">图片</th>
             <th style="text-align: center">操作</th>
         </tr>
-        <?php $i=1;?>
         @foreach($menus as $menu)
             <tr>
-                <td>{{$i++}}</td>
+                <td>{{$menu->id}}</td>
                 <td>{{$menu->goods_name}}</td>
                 <td>{{$menu->rating}}</td>
                 <td>{{$menu->category->name}}</td>
@@ -46,5 +69,5 @@
             </tr>
             @endforeach
     </table>
-    {{$menus->links()}}
+    {{$menus->appends($data)->links()}}
 @stop

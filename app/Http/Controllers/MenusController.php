@@ -16,10 +16,32 @@ class MenusController extends Controller
         ]);
     }
     //菜品列表
-    public function index()
+    public function index(Request $request)
     {
-        $menus = Menu::paginate(20);
-        return view('Menus/index',compact('menus'));
+
+        //搜索分页
+        $goods_name = $request->goods_name;
+        $goods_pricemin = $request->goods_pricemin;
+        $goods_pricemax = $request->goods_pricemax;
+        $where = [
+            ['shop_id',auth()->user()->id]
+        ];
+        if ($goods_name){
+            $where[] = ['goods_name','like','%'.$goods_name.'%'];
+        }
+        if ($goods_pricemin){
+            $where[] = ['goods_price','>=',$goods_pricemin];
+        }
+        if ($goods_pricemin){
+            $where[] = ['goods_price','<=',$goods_pricemax];
+        }
+        $data = [
+            'goods_name'=>$goods_name,
+            'goods_pricemin'=>$goods_pricemin,
+            'goods_pricemax'=>$goods_pricemax,
+        ];
+        $menus = Menu::where($where)->paginate(1);
+        return view('Menus/index',compact('menus','data'));
     }
     //菜品详情
     public function show(Menu $menu)
@@ -48,11 +70,9 @@ class MenusController extends Controller
             'goods_img.required'=>'图片不能为空!',
             'goods_price.required'=>'价格不能为空!',
         ]);
-        $goods_img = $request->file('goods_img')->store('public/goods_img');
-        $goods_img = Storage::url($goods_img);
         Menu::create([
             'goods_name'=>$request->goods_name,
-            'goods_img'=>url($goods_img),
+            'goods_img'=>$request->goods_img,
             'category_id'=>$request->category_id,
             'goods_price'=>$request->goods_price,
             'description'=>$request->description??'暂无',
@@ -93,9 +113,8 @@ class MenusController extends Controller
             'description'=>$request->description??'暂无',
             'tips'=>$request->tips??'暂无',
         ];
-        $img = $request->file('goods_img');
+        $img = $request->goods_img;
         if ($img){
-            $img = Storage::url($img->store('public/goods_img'));
             $data['goods_img'] = $img;
         }
         $menu->update($data);

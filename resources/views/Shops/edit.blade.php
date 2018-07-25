@@ -1,4 +1,10 @@
 @extends('default')
+@section('css_files')
+    <link rel="stylesheet" type="text/css" href="/upload/webuploader.css">
+@stop
+@section('js_files')
+    <script type="text/javascript" src="/upload/webuploader.js"></script>
+@stop
 @section('contents')
     <h2>修改商家信息</h2>
     @include('_errors')
@@ -6,31 +12,6 @@
     <br>
     <form action="{{route('shops.update',[$shop])}}" method="post" enctype="multipart/form-data">
         <table class="table table-bordered">
-            {{--<tr>--}}
-                {{--<td colspan="2" style="text-align: center;font-size: 20px;font-weight: bold">账户相关</td>--}}
-            {{--</tr>--}}
-            {{--<tr>--}}
-                {{--<td>用户名</td>--}}
-                {{--<td>--}}
-                    {{--<input type="text" name="name" class="form-control" value="{{$user->name}}">--}}
-                {{--</td>--}}
-            {{--</tr>--}}
-            {{--<tr>--}}
-                {{--<td>邮箱</td>--}}
-                {{--<td>--}}
-                    {{--<input type="text" name="email" class="form-control" value="{{$user->email}}">--}}
-                {{--</td>--}}
-            {{--</tr>--}}
-            {{--<tr>--}}
-                {{--<td>账户审核</td>--}}
-                {{--<td>--}}
-                    {{--<input type="checkbox" value="1" name="status2" id="status2" @if($user->status2) checked @endif>&emsp;--}}
-                    {{--<label for="status2"><span style="color: red">("✔"为启用,否则禁用)</span></label>--}}
-                {{--</td>--}}
-            {{--</tr>--}}
-            {{--<tr>--}}
-                {{--<td colspan="2" style="text-align: center;font-size: 20px;font-weight: bold">店铺信息</td>--}}
-            {{--</tr>--}}
             <tr>
                 <td>商家名称</td>
                 <td><input type="text" name="shop_name" class="form-control" value="{{$shop->shop_name}}"></td>
@@ -49,8 +30,13 @@
             <tr>
                 <td>店铺图片</td>
                 <td>
-                    <input type="file" name="shop_img" >
-                    <img src="{{\Illuminate\Support\Facades\Storage::url($shop->shop_img)}}" alt="" width="50px">
+                    <input type="hidden" id="shop_img" name="shop_img">
+                    <div id="uploader-demo">
+                        <!--用来存放item-->
+                        <div id="fileList" class="uploader-list"></div>
+                        <div id="filePicker">选择图片</div>
+                    </div>
+                    <img src="{{$shop->shop_img}}" alt="" width="100px" id="img">
                 </td>
             </tr>
             <tr>
@@ -142,3 +128,36 @@
         </table>
     </form>
     @stop
+@section('js')
+    <script type="text/javascript">
+        var uploader = WebUploader.create({
+
+            // 选完文件后，是否自动上传。
+            auto: true,
+
+            // swf文件路径
+            //swf: BASE_URL + '/js/Uploader.swf',
+
+            // 文件接收服务端。
+            server: "{{route('shopImg')}}",
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#filePicker',
+
+            // 只允许选择图片文件。
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            },
+            formData:{
+                _token:"{{csrf_token()}}"
+            }
+        });
+        uploader.on( 'uploadSuccess', function( file,response ) {
+            $('#img').attr('src',response.filename);
+            $('#shop_img').val(response.filename);
+        });
+    </script>
+@stop

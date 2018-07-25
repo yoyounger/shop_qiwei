@@ -126,13 +126,43 @@ class MenuCategoriesController extends Controller
         return redirect()->route('menucategories.index')->with('success', '设置成功!');
     }
     //查看指定分类下的所有菜品
-    public function show(MenuCategory $menucategory)
+    public function show(MenuCategory $menucategory,Request $request)
     {
-        $menus = Menu::where('category_id',$menucategory->id)->paginate(8);
+        //菜品分类导航栏
+        $shop_id = auth()->user()->shop_id;
+        $menucategories = MenuCategory::where('shop_id', $shop_id)->get();
+
+        //搜索分页
+        $goods_name = $request->goods_name;
+        $goods_pricemin = $request->goods_pricemin;
+        $goods_pricemax = $request->goods_pricemax;
+        $where = [
+            ['category_id',$menucategory->id]
+        ];
+        if ($goods_name){
+           $where[] = ['goods_name','like','%'.$goods_name.'%'];
+        }
+        if ($goods_pricemin){
+            $where[] = ['goods_price','>=',$goods_pricemin];
+        }
+        if ($goods_pricemin){
+            $where[] = ['goods_price','<=',$goods_pricemax];
+        }
+        $data = [
+            'goods_name'=>$goods_name,
+            'goods_pricemin'=>$goods_pricemin,
+            'goods_pricemax'=>$goods_pricemax,
+        ];
+        $menus = Menu::where($where)->paginate(1);
         if (!$menus){
             return back()->with('danger','该分类无菜品!');
         }
-        return view('menucategories.show',compact('menus'));
+        return view('menucategories.show',[
+            'menus'=>$menus,
+            'menucategories'=>$menucategories,
+            'data'=>$data,
+            'category'=>$menucategory,
+        ]);
     }
 
 }
