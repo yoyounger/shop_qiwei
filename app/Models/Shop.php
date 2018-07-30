@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
@@ -29,4 +30,10 @@ class Shop extends Model
     {
         return $this->hasOne(ShopCategory::class,'id','shop_category_id');
     }
+    //关联商户账户
+    public function user()
+    {
+        return $this->hasOne(User::class,'id','shop_id');
+    }
+
 }

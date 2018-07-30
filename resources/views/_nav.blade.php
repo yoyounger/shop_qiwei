@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">YOYOUNGER</a>
+            <a class="navbar-brand" href="#">奇味外卖</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -36,12 +36,6 @@
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-left" action="" method="get">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" name="keywords" value="">
-                </div>
-
-            </form>
             <ul class="nav navbar-nav navbar-right">
 
                 @guest

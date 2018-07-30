@@ -153,7 +153,7 @@ class MenuCategoriesController extends Controller
             'goods_pricemin'=>$goods_pricemin,
             'goods_pricemax'=>$goods_pricemax,
         ];
-        $menus = Menu::where($where)->paginate(1);
+        $menus = Menu::where($where)->paginate(8);
         if (!$menus){
             return back()->with('danger','该分类无菜品!');
         }

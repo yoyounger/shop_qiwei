@@ -46,4 +46,13 @@ Route::post('shopImg',function (){
         'filename' =>$storage->url($filename),
     ];
 })->name('shopImg');
+//订单
+Route::resource('orders','OrdersController');
+//发货
+Route::get('send/{order}','OrdersController@send')->name('send');
+Route::get('giveup/{order}','OrdersController@giveup')->name('giveup');
+//订单统计
+Route::get('CountOrder','OrdersController@CountOrder')->name('CountOrder');
+Route::get('CountMenu','MenusController@CountMenu')->name('CountMenu');
+
 

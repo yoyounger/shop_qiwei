@@ -30,13 +30,12 @@
 @include('_nav')
 
 <div class="row container-fluid" >
-    <div class="list-group col-xs-2">
-        <a href="#" class="list-group-item active">
-            Cras justo odio
-        </a>
+    <div class="list-group col-xs-2" id="mya">
+        <a href="{{route('CountMenu')}}" class="list-group-item">我的菜品销量</a>
         <a href="{{route('shows')}}" class="list-group-item">我的商铺信息</a>
         <a href="{{route('menucategories.index')}}" class="list-group-item">我的菜品分类</a>
         <a href="{{route('menus.index')}}" class="list-group-item">我的店铺菜品</a>
+        <a href="{{route('orders.index')}}" class="list-group-item">我的店铺订单</a>
         <a href="{{route('activities.index')}}" class="list-group-item">平台相关活动</a>
     </div>
     <div class="col-xs-1">
@@ -47,5 +46,15 @@
     </div>
 
 </div>
+
 @yield('js')
+<script>
+    $(function () {
+        $('#mya').on('click','a',function () {
+            $(this).removeClass('list-group-item')
+            $(this).addClass('list-group-item active')
+
+        })
+    })
+</script>
 @include('_footer')
