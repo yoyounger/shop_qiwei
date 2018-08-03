@@ -18,6 +18,9 @@ class MenusController extends Controller
         $this->middleware('auth', [
             'only' => ['index']
         ]);
+        $this->middleware('auth', [
+            'expect'=>['CountMenu']
+        ]);
     }
 
     //菜品列表
