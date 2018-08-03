@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class EventsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => ['index']
+        ]);
+    }
     //抽奖活动列表
     public function index()
     {
