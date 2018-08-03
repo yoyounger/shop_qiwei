@@ -23,7 +23,7 @@ Route::resource('users','UsersController');
 //账户登录
 Route::get('login','SessionsController@login')->name('login');
 Route::post('login','SessionsController@store')->name('login');
-Route::delete('logout','SessionsController@destroy')->name('logout');
+Route::get('logout','SessionsController@destroy')->name('logout');
 //账户登录修改个人密码
 Route::get('reset','SessionsController@reset')->name('reset');
 Route::post('password','SessionsController@password')->name('password');
@@ -54,5 +54,11 @@ Route::get('giveup/{order}','OrdersController@giveup')->name('giveup');
 //订单统计
 Route::get('CountOrder','OrdersController@CountOrder')->name('CountOrder');
 Route::get('CountMenu','MenusController@CountMenu')->name('CountMenu');
+//抽奖活动
+Route::resource('events','EventsController');
+//报名抽奖
+Route::get('apply/{id}','EventsController@apply')->name('apply');
+//查看抽奖结果
+Route::get('result/{id}','EventsController@result')->name('result');
 
 

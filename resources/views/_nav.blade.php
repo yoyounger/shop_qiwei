@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">奇味外卖</a>
+            <a class="navbar-brand" href="#">当味小外</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,23 +18,6 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="{{route('shops.index')}}"><span class="glyphicon glyphicon-tree-conifer"></span>&emsp;首页 <span
                                 class="sr-only">(current)</span></a></li>
-                <li><a href=""><span class="glyphicon glyphicon-education"></span>&emsp;分类</a></li>
-                <li><a href=""><span class="glyphicon glyphicon-question-sign"></span>&emsp;列表</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&emsp;我的商城 <span
-                                class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="">列表</a></li>
-                        <li><a href="">分类</a></li>
-
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
@@ -51,11 +34,7 @@
                         <li><a href="{{route('reset')}}"><span class="glyphicon glyphicon-scissors"></span>&emsp;修改密码</a></li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <form action="{{route('logout')}}" method="post">
-                                <button class="btn btn-link"><span class="glyphicon glyphicon-off"></span>&emsp;安全退出</button>
-                                {{method_field('DELETE')}}
-                                {{csrf_field()}}
-                            </form>
+                            <a href="{{route('logout')}}"><span class="glyphicon glyphicon-off"></span>&emsp;安全退出</a>
                         </li>
                     </ul>
                 </li>
